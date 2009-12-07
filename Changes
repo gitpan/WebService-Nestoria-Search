@@ -1,3 +1,7 @@
+--- 1.17.1 (7/12/2009) ---
+    * failing test in 1.17.0 caused by external data. fixed test.
+    * skip perl-critic test, it fails on too many foreign/CPANTS machines
+
 --- 1.17.0 (2/12/2009) ---
     * updated to match version 1.17 of the API
         * added price_high and price_low as fields in the Result object

@@ -6,16 +6,20 @@ use English qw(-no_match_vars);
 
 my $msg;
 
-if ($ENV{'PERLCRITIC'}) {
+if (!$ENV{'WNS_DO_PERL_CRITIC'}) {
+    $msg = 'Test::Perl::Critic skipped: set "WNS_DO_PERL_CRITIC" env variable to enable'
+}
+elsif ($ENV{'PERLCRITIC'}) {
     $msg = 'Test::Perl::Critic skipped: ENV defines custom .perlcriticrc';
 }
-if (-f "$ENV{HOME}/.perlcriticrc") {
+elsif (-f "$ENV{HOME}/.perlcriticrc") {
     $msg = 'Test::Perl::Critic skipped: ~/.perlcriticrc found, do not want';
 }
-
-eval { require Test::Perl::Critic };
-if ($EVAL_ERROR) {
-    $msg = 'Test::Perl::Critic required to criticise code';
+else {
+    eval { require Test::Perl::Critic };
+    if ($EVAL_ERROR) {
+        $msg = 'Test::Perl::Critic required to criticise code';
+    }
 }
 
 
