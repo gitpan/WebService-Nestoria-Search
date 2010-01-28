@@ -4,7 +4,7 @@ use warnings;
 package WebService::Nestoria::Search;
 
 use Carp;
-use version; our $VERSION = qv('1.17.1');
+use version; our $VERSION = qv('1.17.2');
 use WebService::Nestoria::Search::Request;
 use WebService::Nestoria::Search::MetadataResponse;
 
@@ -160,7 +160,7 @@ my %Config = (
 );
 
 ## filled in Search/Request.pm
-our $RecentRequsetUrl;
+our $RecentRequestUrl;
 
 my %GlobalDefaults = (
     'warnings'                => '1',
@@ -612,6 +612,10 @@ or when calling C<new>
 Country is an optional parameter which defaults to 'uk'. It affects the URL which is used for fetching results.
 
 Currently the available countries are 'uk' for the United Kingdom, 'es' for Spain, 'de' for Germany and 'it' for Italy.
+
+=head1 RecentRequestUrl
+
+$WebService::Nestoria::Search::RecentRequestUrl is a global variable which stores the URL of the most recently made request.
 
 =head1 Non-OO
 
