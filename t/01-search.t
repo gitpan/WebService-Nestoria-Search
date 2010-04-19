@@ -44,7 +44,7 @@ is(scalar(@results), 10, 'got 10 results for basic search');
 
 my @parameters_uk_soho = (
     # default = uk is fine
-    apply { $_->{'country'} = 'uk'; $_->{'place_name'} = 'soho' } (
+    apply { $_->{'country'} = 'uk'; $_->{'place_name'} = 'richmond' } (
         { 'number_of_results' => 1,                         },
         { 'page'              => 2                          },
         { 'listing_type'      => 'buy'                      },
