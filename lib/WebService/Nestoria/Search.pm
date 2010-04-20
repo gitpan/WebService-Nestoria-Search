@@ -4,23 +4,23 @@ use warnings;
 package WebService::Nestoria::Search;
 
 use Carp;
-use version; our $VERSION = qv('1.17.3');
+use version; our $VERSION = qv('1.17.4');
 use WebService::Nestoria::Search::Request;
 use WebService::Nestoria::Search::MetadataResponse;
 
 =head1 NAME
 
-WebService::Nestoria::Search - Perl interface to the Nestoria Search public API.
+WebService::Nestoria::Search - Perl interface to the Nestoria Search public API
 
 =head1 SYNOPSIS
 
-WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings. Nestoria currently has listings for the UK, Germany, Italy and Spain, which can be accessed via the web at www.nestoria.co.uk, www.nestoria.de, www.nestoria.co.it and www.nestoria.es.
+WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings. Nestoria currently has listings for the UK, Germany, Italy, Spain, and Australia.
 
-WebService::Nestoria::Search is currently written to be used with v1.15 of the Nestoria API.
+WebService::Nestoria::Search is currently written to be used with version 1.17 of the Nestoria API.
 
 Functions and documentation are split over WebService::Nestoria::Search, WebService::Nestoria::Search::Request, WebService::Nestoria::Search::Response and WeebService::Nestoria::Search::Result. However you need only ever use WebService::Nestoria::Search, and the others will be used as necessary.
 
-A Request object stores the parameters of the request, a Response object stores the data retrieved from the API (in JSON and Perl hashref formats), and a Result represents an individual listing.
+A Request object stores the parameters of the request, a Response object stores the data retrieved from the API, and a Result represents an individual listing.
 
 =head2 Parameters
 
@@ -56,6 +56,8 @@ The possible parameters and their defaults are as follows:
     keywords_exclude
 
 If parameters are passed to C<new> they are used as the defaults for all calls to the API. Otherwise they can be passed to the querying functions (eg. C<query>) as per-search parameters.
+
+See http://www.nestoria.co.uk/help/api-tech for full documentation of allowed values.
 
 =head2 Simple Example
 
@@ -155,7 +157,7 @@ my %Config = (
         'es'                  => 'http://api.nestoria.es/api',
         'de'                  => 'http://api.nestoria.de/api',
         'it'                  => 'http://api.nestoria.it/api',
-
+        'au'                  => 'http://api.nestoria.com.au/api',
     },
 );
 
@@ -253,7 +255,7 @@ my $validate_listing_type = sub {
 
 my $validate_property_type = sub {
     my $val = shift;
-    return grep { $val eq $_ } qw(all house flat);
+    return grep { $val eq $_ } qw(all house flat land);
 };
 
 my $validate_max = sub {
@@ -549,7 +551,7 @@ sub test_connection {
         return 1;
     }
     else {
-        return 0;
+        return;
     }
 }
 
@@ -558,8 +560,6 @@ sub test_connection {
 Uses the API feature 'action=keywords' to return a list of valid keywords. A current list of keywords can be found at the below URL, but do not hardcode the list of keywords in your code as it is occasionally subject to change.
 
     my @keywords = $NS->keywords;
-
-Taken from B<http://www.nestoria.co.uk/help/api-tech>.
 
 =cut
 

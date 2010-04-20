@@ -1,3 +1,10 @@
+--- 1.17.4 (20/4/2010) ---
+    * added Australia support
+    * added "land" property type support
+    * fixed small POD issues
+    * added countries test
+    * separated out validations test
+
 --- 1.17.3 (19/4/2010) ---
     * changed soho to richmond in 01-search.t
       - no gardens in soho caused the test to fail
