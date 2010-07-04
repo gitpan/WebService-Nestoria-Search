@@ -4,23 +4,23 @@ use warnings;
 package WebService::Nestoria::Search;
 
 use Carp;
-use version; our $VERSION = qv('1.17.4');
+use version; our $VERSION = qv('1.17.5');
 use WebService::Nestoria::Search::Request;
 use WebService::Nestoria::Search::MetadataResponse;
 
 =head1 NAME
 
-WebService::Nestoria::Search - Perl interface to the Nestoria Search public API
+WebService::Nestoria::Search - Perl interface to the Nestoria Search public API.
 
 =head1 SYNOPSIS
 
-WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings. Nestoria currently has listings for the UK, Germany, Italy, Spain, and Australia.
+WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings. Nestoria currently has listings for the UK, Germany, Italy and Spain, which can be accessed via the web at www.nestoria.co.uk, www.nestoria.de, www.nestoria.co.it and www.nestoria.es.
 
-WebService::Nestoria::Search is currently written to be used with version 1.17 of the Nestoria API.
+WebService::Nestoria::Search is currently written to be used with v1.15 of the Nestoria API.
 
 Functions and documentation are split over WebService::Nestoria::Search, WebService::Nestoria::Search::Request, WebService::Nestoria::Search::Response and WeebService::Nestoria::Search::Result. However you need only ever use WebService::Nestoria::Search, and the others will be used as necessary.
 
-A Request object stores the parameters of the request, a Response object stores the data retrieved from the API, and a Result represents an individual listing.
+A Request object stores the parameters of the request, a Response object stores the data retrieved from the API (in JSON and Perl hashref formats), and a Result represents an individual listing.
 
 =head2 Parameters
 
@@ -57,7 +57,7 @@ The possible parameters and their defaults are as follows:
 
 If parameters are passed to C<new> they are used as the defaults for all calls to the API. Otherwise they can be passed to the querying functions (eg. C<query>) as per-search parameters.
 
-See http://www.nestoria.co.uk/help/api-tech for full documentation of allowed values.
+You should never have to set the 'action' parameter yourself, it is implied by the method you choose to use to run the query.
 
 =head2 Simple Example
 
@@ -144,8 +144,8 @@ my %Config = (
         'bathroom_min'        => undef,   # defaults to 'min'
         'room_max'            => undef,   # defaults to 'max'
         'room_min'            => undef,   # defaults to 'min'
-        'size_max'            => undef,   # only for Spain
-        'size_min'            => undef,   # only for Spain
+        'size_max'            => undef,   # defaults to 'max'
+        'size_min'            => undef,   # defaults to 'min'
         'sort'                => undef,   # defaults to 'nestoria_rank'
         'keywords'            => undef,   # defaults to an empty list
         'keywords_exclude'    => undef,   # defaults to an empty list
@@ -162,7 +162,7 @@ my %Config = (
 );
 
 ## filled in Search/Request.pm
-our $RecentRequestUrl;
+our $RecentRequsetUrl;
 
 my %GlobalDefaults = (
     'warnings'                => '1',
@@ -255,7 +255,7 @@ my $validate_listing_type = sub {
 
 my $validate_property_type = sub {
     my $val = shift;
-    return grep { $val eq $_ } qw(all house flat land);
+    return grep { $val eq $_ } qw(all house flat);
 };
 
 my $validate_max = sub {
@@ -551,7 +551,7 @@ sub test_connection {
         return 1;
     }
     else {
-        return;
+        return 0;
     }
 }
 
@@ -560,6 +560,8 @@ sub test_connection {
 Uses the API feature 'action=keywords' to return a list of valid keywords. A current list of keywords can be found at the below URL, but do not hardcode the list of keywords in your code as it is occasionally subject to change.
 
     my @keywords = $NS->keywords;
+
+Taken from B<http://www.nestoria.co.uk/help/api-tech>.
 
 =cut
 
@@ -611,11 +613,21 @@ or when calling C<new>
 
 Country is an optional parameter which defaults to 'uk'. It affects the URL which is used for fetching results.
 
-Currently the available countries are 'uk' for the United Kingdom, 'es' for Spain, 'de' for Germany and 'it' for Italy.
+Currently the available countries are:
 
-=head1 RecentRequestUrl
+=over 4
 
-$WebService::Nestoria::Search::RecentRequestUrl is a global variable which stores the URL of the most recently made request.
+=item * uk - United Kingdom
+
+=item * es - Spain
+
+=item * it - Italy
+
+=item * de - Germany
+
+=item * au - Australia
+
+=back
 
 =head1 Non-OO
 
@@ -629,7 +641,9 @@ Copyright (C) 2009 Lokku Ltd.
 
 =head1 Author
 
-Alex Balhatchet (kaoru at slackwise dot net), Yoav Felberbaum (perl at mrdini dot com), Alistair Francis (cpan at alizta dot com).
+Alex Balhatchet (alex@lokku.com)
+
+Patches supplied by Yoav Felberbaum and Alistair Francis.
 
 =head1 Acknowledgements
 

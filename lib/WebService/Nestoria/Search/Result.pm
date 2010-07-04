@@ -108,24 +108,28 @@ sub get_auction_date              { shift->{data}{listing}{get_auction_date}    
 Returns a hashref containing the details of the listing with keys exactly as the list above. For example:
 
     use Data::Dumper;
-    print Dumper $result->get_hashref ;
+    print Dumper($result->get_hashref);
 
     $VAR1= {
-        'title' => 'Thornbury Road, Brixton',
-        'price' => '459950',
-        'price_type' => 'fixed',
         'price_currency' => 'GBP',
-        'price_formatted' => '459,950 GBP',
-        'bedroom_number' => '4',
         'bathroom_number' => '2',
-        'longitude' => '-0.129012',
-        'latitude' => '51.4508',
-        'property_type' => 'house',
+        'price_formatted' => '459,950 GBP',
         'listing_type' => 'buy',
         'keywords' => 'Garden, Loft, Cellar, Reception',
         'summary' => 'In need of complete refurbishment is this four bedroom family home located...',
+        'latitude' => '51.4508',
         'lister_url' => 'http://rd.nestoria.co.uk/rd?l=api-sr-title-1&url=...',
-        ...
+        'property_type' => 'house',
+        'price_type' => 'fixed',
+        'longitude' => '-0.129012',
+        'thumb_width' => '60',
+        'lister_name' => 'KF&H',
+        'thumb_url' => 'http://limg.nestoria.co.uk/f/b/fb67e2b0d76350f7ebcf8fa6488b2ec4.jpg',
+        'title' => 'Thornbury Road, Brixton',
+        'price' => '459950',
+        'bedroom_number' => '4',
+        'thumb_height' => '60',
+        'datasource_name' => 'PropertyFinder'
     };
 
 =cut
@@ -141,7 +145,9 @@ Copyright (C) 2009 Lokku Ltd.
 
 =head1 Author
 
-Alex Balhatchet (kaoru at slackwise dot net), Yoav Felberbaum (perl at mrdini dot com), Alistair Francis (cpan at alizta dot com).
+Alex Balhatchet (alex@lokku.com)
+
+Patches supplied by Yoav Felberbaum and Alistair Francis.
 
 =cut
 
