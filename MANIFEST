@@ -1,15 +1,16 @@
-Build.PL
 Changes
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
+dist.ini
 lib/WebService/Nestoria/Search.pm
 lib/WebService/Nestoria/Search/MetadataResponse.pm
 lib/WebService/Nestoria/Search/Request.pm
 lib/WebService/Nestoria/Search/Response.pm
 lib/WebService/Nestoria/Search/Result.pm
-LICENSE
-Makefile.PL
-MANIFEST			This list of files
-META.yml
-README
 t/00-compile.t
 t/01-search.t
 t/02-request.t
@@ -18,7 +19,4 @@ t/04-result.t
 t/05-metadata.t
 t/06-countries.t
 t/07-parameter-validation.t
-t/xx-kwalitee.t
-t/xx-perl_critic.t
-t/xx-pod.t
-t/xx-pod_coverage.t
+t/release-pod-syntax.t

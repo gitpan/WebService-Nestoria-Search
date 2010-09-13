@@ -2,10 +2,17 @@ use strict;
 use warnings;
 
 package WebService::Nestoria::Search::MetadataResponse;
+BEGIN {
+  $WebService::Nestoria::Search::MetadataResponse::VERSION = '1.017009';
+}
 
 =head1 NAME
 
 WebService::Nestoria::Search::MetadataResponse - Container object for the result of a metadata query to the Nestoria Search API.
+
+=head1 VERSION
+
+version 1.017009
 
 This package is used by WebService::Nestoria::Search and a WebService::Nestoria::Search::MetadataResponse object should never need to be explicitly created by the user.
 
