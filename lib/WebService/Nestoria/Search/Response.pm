@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search::Response;
 BEGIN {
-  $WebService::Nestoria::Search::Response::VERSION = '1.0170010';
+  $WebService::Nestoria::Search::Response::VERSION = '1.017010';
 }
 
 use WebService::Nestoria::Search::Result;
@@ -14,7 +14,7 @@ WebService::Nestoria::Search::Response - Container object for the result set of 
 
 =head1 VERSION
 
-version 1.0170010
+version 1.017010
 
 This package is used by WebService::Nestoria::Search and a WebService::Nestoria::Search::Response object should never need to be explicitly created by the user.
 
