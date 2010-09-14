@@ -2,7 +2,10 @@
 abstract: 'WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.'
 author:
   - 'Alex Balhatchet (alex@lokku.com)'
-build_requires: {}
+build_requires:
+  List::MoreUtils: 0
+  Test::More: 0
+  Test::Warn: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
@@ -23,4 +26,4 @@ requires:
 resources:
   homepage: http://www.nestoria.co.uk/help/api
   repository: git://github.com/kaoru/WebService-Nestoria-Search.git
-version: 1.017009
+version: 1.0170010

@@ -29,6 +29,13 @@
             "XML::Simple" : 0,
             "version" : 0
          }
+      },
+      "test" : {
+         "requires" : {
+            "List::MoreUtils" : 0,
+            "Test::More" : 0,
+            "Test::Warn" : 0
+         }
       }
    },
    "release_status" : "stable",
@@ -40,6 +47,6 @@
          "web" : "http://github.com/kaoru/WebService-Nestoria-Search"
       }
    },
-   "version" : "1.017009"
+   "version" : "1.0170010"
 }
 

@@ -11,7 +11,11 @@ use ExtUtils::MakeMaker 6.31;
 my %WriteMakefileArgs = (
   'ABSTRACT' => 'WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.',
   'AUTHOR' => 'Alex Balhatchet (alex@lokku.com)',
-  'BUILD_REQUIRES' => {},
+  'BUILD_REQUIRES' => {
+    'List::MoreUtils' => '0',
+    'Test::More' => '0',
+    'Test::Warn' => '0'
+  },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
   },
@@ -28,7 +32,7 @@ my %WriteMakefileArgs = (
     'XML::Simple' => '0',
     'version' => '0'
   },
-  'VERSION' => '1.017009',
+  'VERSION' => '1.0170010',
   'test' => {
     'TESTS' => 't/*.t'
   }
