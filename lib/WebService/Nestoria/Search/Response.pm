@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search::Response;
 BEGIN {
-  $WebService::Nestoria::Search::Response::VERSION = '1.017010';
+  $WebService::Nestoria::Search::Response::VERSION = '1.018001';
 }
 
 use WebService::Nestoria::Search::Result;
@@ -14,7 +14,7 @@ WebService::Nestoria::Search::Response - Container object for the result set of 
 
 =head1 VERSION
 
-version 1.017010
+version 1.018001
 
 This package is used by WebService::Nestoria::Search and a WebService::Nestoria::Search::Response object should never need to be explicitly created by the user.
 
@@ -69,7 +69,7 @@ sub get_xml {
 
 =head2 status_code
 
-Returns the status code of the response. 200 on success, various other numbers on errors.
+Returns the HTTP status code of the response. 200 on success, various other numbers on errors.
 
 =cut
 
@@ -78,7 +78,58 @@ sub status_code {
     return $self->{data}{response}{status_code};
 }
 
+=head2 application_response_code
 
+Returns the application response code, which is much more useful than the status_code for determining the correctness of the response.
+
+Numbers starting 1xx are successes
+
+Numbers starting 2xx are location errors
+
+Numbers starting 5xx are internal server errors
+
+Numbers starting 9xx are invalid request errors
+
+For more information read the Nestoria API documentation: http://www.nestoria.co.uk/help/api-return-codes
+
+=cut
+
+sub application_response_code {
+    my $self = shift;
+    return $self->{data}{response}{application_response_code};
+}
+
+=head2 application_response_text
+
+Returns the text description of the application response code. For example if the application response code is 100, the text is "one unambiguous location".
+
+=cut
+
+sub application_response_text {
+    my $self = shift;
+    return $self->{data}{response}{application_response_text};
+}
+
+=head2 is_success
+
+Uses the status_code and application_response_code, and returns true if the request was a success and false otherwise. Concept stolen straight from LWP::UserAgent.
+
+    if ($response->is_success) {
+        foreach my $result ($response->results) {
+            # do stuff...
+        }
+    }
+    else {
+        die $response->application_response_text;
+    }
+
+=cut
+
+sub is_success {
+    my $self = shift;
+    return ($self->status_code == 200)
+        && ($self->application_response_code =~ m/^1/);
+}
 
 =head2 get_hashref
 
@@ -158,7 +209,7 @@ sub results {
 
 Returns the next WebService::Nestoria::Search::Result object to be fetched. When out of listings returns C<undef>, making it suitable for use in while loops.
 
-    while ( $listing = $result->next_result ) {
+    while ( $listing = $response->next_result ) {
         # do something;
     }
 

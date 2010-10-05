@@ -19,4 +19,5 @@ t/04-result.t
 t/05-metadata.t
 t/06-countries.t
 t/07-parameter-validation.t
+t/08-response-codes.t
 t/release-pod-syntax.t
