@@ -32,7 +32,7 @@ my %WriteMakefileArgs = (
     'XML::Simple' => '0',
     'version' => '0'
   },
-  'VERSION' => '1.018002',
+  'VERSION' => '1.018003',
   'test' => {
     'TESTS' => 't/*.t'
   }

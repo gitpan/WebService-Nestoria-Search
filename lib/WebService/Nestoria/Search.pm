@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search;
 BEGIN {
-  $WebService::Nestoria::Search::VERSION = '1.018002';
+  $WebService::Nestoria::Search::VERSION = '1.018003';
 }
 
 use Carp;
@@ -16,13 +16,13 @@ WebService::Nestoria::Search - Perl interface to the Nestoria Search public API.
 
 =head1 VERSION
 
-version 1.018002
+version 1.018003
 
 =head1 SYNOPSIS
 
 WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.
 
-WebService::Nestoria::Search is currently written to be used with v1.17 of the Nestoria API.
+WebService::Nestoria::Search is currently written to be used with v1.18 of the Nestoria API.
 
 Functions and documentation are split over WebService::Nestoria::Search, WebService::Nestoria::Search::Request, WebService::Nestoria::Search::Response and WeebService::Nestoria::Search::Result. However you need only ever use WebService::Nestoria::Search, and the others will be used as necessary.
 
@@ -165,6 +165,7 @@ my %Config = (
         'it'                  => 'http://api.nestoria.it/api',
         'au'                  => 'http://api.nestoria.com.au/api',
         'fr'                  => 'http://api.nestoria.fr/api',
+        'br'                  => 'http://api.nestoria.com.br/api',
     },
 );
 
@@ -635,6 +636,8 @@ Currently the available countries are:
 =item * fr - France
 
 =item * au - Australia
+
+=item * br - Brazil
 
 =back
 
