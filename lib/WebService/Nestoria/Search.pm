@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search;
 BEGIN {
-  $WebService::Nestoria::Search::VERSION = '1.018003';
+  $WebService::Nestoria::Search::VERSION = '1.018004';
 }
 
 use Carp;
@@ -16,7 +16,7 @@ WebService::Nestoria::Search - Perl interface to the Nestoria Search public API.
 
 =head1 VERSION
 
-version 1.018003
+version 1.018004
 
 =head1 SYNOPSIS
 
@@ -166,6 +166,7 @@ my %Config = (
         'au'                  => 'http://api.nestoria.com.au/api',
         'fr'                  => 'http://api.nestoria.fr/api',
         'br'                  => 'http://api.nestoria.com.br/api',
+        'in'                  => 'http://api.nestoria.in/api',
     },
 );
 
@@ -638,6 +639,8 @@ Currently the available countries are:
 =item * au - Australia
 
 =item * br - Brazil
+
+=item * in - India
 
 =back
 
