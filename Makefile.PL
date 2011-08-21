@@ -4,37 +4,37 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.',
-  'AUTHOR' => 'Alex Balhatchet (alex@lokku.com)',
-  'BUILD_REQUIRES' => {
-    'List::MoreUtils' => '0',
-    'Test::More' => '0',
-    'Test::Warn' => '0'
+  "ABSTRACT" => "WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.",
+  "AUTHOR" => "Alex Balhatchet (alex\@lokku.com)",
+  "BUILD_REQUIRES" => {
+    "List::MoreUtils" => 0,
+    "Test::More" => 0,
+    "Test::Warn" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'WebService-Nestoria-Search',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'WebService::Nestoria::Search',
-  'PREREQ_PM' => {
-    'Carp' => '0',
-    'HTTP::Request' => '0',
-    'JSON' => '2.0',
-    'LWP::UserAgent' => '0',
-    'URI' => '0',
-    'XML::Simple' => '0',
-    'version' => '0'
+  "DISTNAME" => "WebService-Nestoria-Search",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "WebService::Nestoria::Search",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "HTTP::Request" => 0,
+    "JSON" => "2.0",
+    "LWP::UserAgent" => 0,
+    "URI" => 0,
+    "XML::Simple" => 0,
+    "version" => 0
   },
-  'VERSION' => '1.020001',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "1.020002",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
