@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search::Request;
 {
-  $WebService::Nestoria::Search::Request::VERSION = '1.020002';
+  $WebService::Nestoria::Search::Request::VERSION = '1.020003';
 }
 
 use WebService::Nestoria::Search::Response;
@@ -19,7 +19,7 @@ WebService::Nestoria::Search::Request - Container object for a WebService::Nesto
 
 =head1 VERSION
 
-version 1.020002
+version 1.020003
 
 This package is used by WebService::Nestoria::Search and a C<Request> object should never need to be explicitly created by the user.
 
