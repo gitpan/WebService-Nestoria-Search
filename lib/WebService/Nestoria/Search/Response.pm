@@ -3,10 +3,12 @@ use warnings;
 
 package WebService::Nestoria::Search::Response;
 {
-  $WebService::Nestoria::Search::Response::VERSION = '1.020003';
+  $WebService::Nestoria::Search::Response::VERSION = '1.021000';
 }
 
 use WebService::Nestoria::Search::Result;
+use Carp;
+use URI;
 
 =head1 NAME
 
@@ -14,7 +16,7 @@ WebService::Nestoria::Search::Response - Container object for the result set of 
 
 =head1 VERSION
 
-version 1.020003
+version 1.021000
 
 This package is used by WebService::Nestoria::Search and a WebService::Nestoria::Search::Response object should never need to be explicitly created by the user.
 
@@ -37,7 +39,8 @@ sub new {
         $result->{ordinal} = $i;
         $result->{response} = $self->{data};
 
-        $self->{results}[$i] = new WebService::Nestoria::Search::Result ($result);
+        $self->{results}[$i]
+            = WebService::Nestoria::Search::Result->new($result);
     }
 
     return bless $self, $class;
@@ -192,6 +195,36 @@ sub attribution_xhtml {
            $self->{data}{response}{attribution}{img_url},
            $self->{data}{response}{attribution}{img_height},
            $self->{data}{response}{attribution}{img_width};
+}
+
+=head2 nestoria_site_uri
+
+Returns a URI object representing the URL for the Nestoria results page for the request.
+
+=cut
+
+sub nestoria_site_uri {
+    my $self = shift;
+
+    if ($self->{data}{response}{link_to_url}) {
+        return URI->new($self->{data}{response}{link_to_url});
+    }
+    else {
+        carp "No 'link_to_url' found in the response";
+    }
+
+    return;
+}
+
+=head2 nestoria_site_url
+
+Returns a URL for the Nestoria results page for the request.
+
+=cut
+
+sub nestoria_site_url {
+    my $self = shift;
+    return $self->nestoria_site_uri->as_string;
 }
 
 =head2 results

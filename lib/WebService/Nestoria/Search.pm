@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search;
 {
-  $WebService::Nestoria::Search::VERSION = '1.020003';
+  $WebService::Nestoria::Search::VERSION = '1.021000';
 }
 
 use Carp;
@@ -16,7 +16,7 @@ WebService::Nestoria::Search - Perl interface to the Nestoria Search public API.
 
 =head1 VERSION
 
-version 1.020003
+version 1.021000
 
 =head1 SYNOPSIS
 
@@ -69,7 +69,7 @@ You should never have to set the 'action' parameter yourself, it is implied by t
 
     use WebService::Nestoria::Search;
 
-    my $NS = new WebService::Nestoria::Search(
+    my $NS = WebService::Nestoria::Search->new(
         place_name          => 'soho',
         listing_type        => 'rent',
         property_type       => 'flat',
@@ -157,13 +157,14 @@ my %Config = (
         'keywords_exclude'    => undef,   # defaults to an empty list
         'callback'            => undef,
     },
-    
+
     'Urls' => {
         'uk'                  => 'http://api.nestoria.co.uk/api',
         'es'                  => 'http://api.nestoria.es/api',
         'de'                  => 'http://api.nestoria.de/api',
         'it'                  => 'http://api.nestoria.it/api',
         'fr'                  => 'http://api.nestoria.fr/api',
+        'au'                  => 'http://api.nestoria.com.au/api',
         'br'                  => 'http://api.nestoria.com.br/api',
         'in'                  => 'http://api.nestoria.in/api',
     },
@@ -281,7 +282,7 @@ my $validate_sort = sub {
     return grep { $val eq $_ } qw(bedroom_lowhigh bedroom_highlow
                                   price_lowhigh price_highlow
                                   newest oldest);
-}; 
+};
 
 my $validate_version = sub {
     my $val = shift;
@@ -339,7 +340,7 @@ my %ValidateRoutine = (
     'pretty'              => $validate_pretty,
     'has_photo'           => $validate_allow_all,
     'guid'                => $validate_allow_all,
-); 
+);
 
 sub _validate {
     my $key = shift;
@@ -438,11 +439,11 @@ sub request {
     if ( @_ % 2 != 0 ) {
         return _carp_on_error("wrong arg count for request");
     }
-    
+
     my %args = @_;
 
     unless ( ref $self ) {
-        $self = new $self;
+        $self = $self->new;
     }
 
     foreach my $key ( keys %GlobalDefaults ) {
@@ -476,7 +477,7 @@ sub request {
         return _carp_on_error("number_of_results $args{number_of_results} too large, maximum is $Config{MaxResults}");
     }
 
-    return new WebService::Nestoria::Search::Request (\%params);
+    return WebService::Nestoria::Search::Request->new(\%params);
 }
 
 =head2 query
@@ -494,9 +495,9 @@ This is a shortcut for
 
 sub query {
     my $self = shift;
-    
+
     unless ( ref $self ) {
-        $self = new $self;
+        $self = $self->new;
     }
 
     if ( my $request = $self->request(@_) ) {
@@ -525,9 +526,9 @@ sub results {
     my $self = shift;
 
     unless ( ref $self ) {
-        $self = new $self;
+        $self = $self->new;
     }
-    
+
     my $response = $self->query(@_);
 
     unless ( $response ) {
@@ -597,14 +598,14 @@ sub metadata {
     my $self = shift;
 
     unless ( ref $self ) {
-        $self = new $self;
+        $self = $self->new;
     }
 
     my %params = ( action => 'metadata' );
 
     my $response = $self->query(%params, @_);
 
-    return new WebService::Nestoria::Search::MetadataResponse($response->get_hashref);
+    return WebService::Nestoria::Search::MetadataResponse->new($response->get_hashref);
 }
 
 =head1 Warnings
@@ -615,7 +616,7 @@ Warnings is true by default, and means that errors are output to STDERR as well 
 
 or when calling C<new>
 
-    my $NS = new WebService::Nestoria::Search(Warnings => 0);
+    my $NS = WebService::Nestoria::Search->new(Warnings => 0);
 
 =head1 Country
 

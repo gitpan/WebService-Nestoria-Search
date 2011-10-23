@@ -3,7 +3,7 @@ use warnings;
 
 package WebService::Nestoria::Search::Request;
 {
-  $WebService::Nestoria::Search::Request::VERSION = '1.020003';
+  $WebService::Nestoria::Search::Request::VERSION = '1.021000';
 }
 
 use WebService::Nestoria::Search::Response;
@@ -19,7 +19,7 @@ WebService::Nestoria::Search::Request - Container object for a WebService::Nesto
 
 =head1 VERSION
 
-version 1.020003
+version 1.021000
 
 This package is used by WebService::Nestoria::Search and a C<Request> object should never need to be explicitly created by the user.
 
@@ -44,7 +44,7 @@ sub uri {
     my $self = shift;
 
     unless ( $self->{_uri} ) {
-        $self->{_uri} = new URI ($self->{ActionUrl}, 'http');
+        $self->{_uri} = URI->new($self->{ActionUrl}, 'http');
         $self->{_uri}->query_form( %{ $self->{Params} } );
     }
     return $self->{_uri};
@@ -78,7 +78,7 @@ sub fetch {
 
     $WebService::Nestoria::Search::RecentRequestUrl = $self->url;
 
-    $UA ||= new LWP::UserAgent (agent => $self->{AppId});
+    $UA ||= LWP::UserAgent->new(agent => $self->{AppId});
 
     my $response = $UA->get($WebService::Nestoria::Search::RecentRequestUrl);
     sleep 2;
@@ -94,7 +94,7 @@ sub fetch {
         my $response_obj = from_json($raw);
 
         if ( ref $response_obj ) {
-            return new WebService::Nestoria::Search::Response ($response_obj, $raw);
+            return WebService::Nestoria::Search::Response->new($response_obj, $raw);
         }
         else {
             return;
@@ -110,14 +110,14 @@ sub fetch {
         }
      
         if (ref($response_obj)) {
-            return new WebService::Nestoria::Search::Response ($response_obj, $raw);
+            return WebService::Nestoria::Search::Response->new($response_obj, $raw);
         }
         else {
             return;
         }
     }
     else {
-        return new WebService::Nestoria::Search::Response ({}, $raw);
+        return WebService::Nestoria::Search::Response->new({}, $raw);
     }
 }
 

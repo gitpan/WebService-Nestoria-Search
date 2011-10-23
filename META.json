@@ -4,7 +4,7 @@
       "Alex Balhatchet (alex@lokku.com)"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200014, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "Dist::Zilla version (undef), CPAN::Meta::Converter version 2.112621",
    "license" : [
       "perl_5"
    ],
@@ -47,6 +47,6 @@
          "web" : "http://github.com/kaoru/WebService-Nestoria-Search"
       }
    },
-   "version" : "1.020003"
+   "version" : "1.021000"
 }
 
