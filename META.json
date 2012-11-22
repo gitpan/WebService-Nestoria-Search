@@ -4,7 +4,7 @@
       "Alex Balhatchet (alex@lokku.com)"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version (undef), CPAN::Meta::Converter version 2.112621",
+   "generated_by" : "Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -19,22 +19,27 @@
             "ExtUtils::MakeMaker" : "6.30"
          }
       },
+      "develop" : {
+         "requires" : {
+            "Test::Pod" : "1.41"
+         }
+      },
       "runtime" : {
          "requires" : {
-            "Carp" : 0,
-            "HTTP::Request" : 0,
+            "Carp" : "0",
+            "HTTP::Request" : "0",
             "JSON" : "2.0",
-            "LWP::UserAgent" : 0,
-            "URI" : 0,
-            "XML::Simple" : 0,
-            "version" : 0
+            "LWP::UserAgent" : "0",
+            "URI" : "0",
+            "XML::Simple" : "0",
+            "version" : "0"
          }
       },
       "test" : {
          "requires" : {
-            "List::MoreUtils" : 0,
-            "Test::More" : 0,
-            "Test::Warn" : 0
+            "List::MoreUtils" : "0",
+            "Test::More" : "0",
+            "Test::Warn" : "0"
          }
       }
    },
@@ -47,6 +52,6 @@
          "web" : "http://github.com/kaoru/WebService-Nestoria-Search"
       }
    },
-   "version" : "1.021000"
+   "version" : "1.021001"
 }
 

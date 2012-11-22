@@ -9,7 +9,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version (undef), CPAN::Meta::Converter version 2.112621'
+generated_by: 'Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -26,4 +26,4 @@ requires:
 resources:
   homepage: http://www.nestoria.co.uk/help/api
   repository: git://github.com/kaoru/WebService-Nestoria-Search.git
-version: 1.021000
+version: 1.021001
