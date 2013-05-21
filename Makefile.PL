@@ -11,11 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "WebService::Nestoria::Search provides a Perl interface to the public API of Nestoria, a vertical search engine for property listings.",
   "AUTHOR" => "Alex Balhatchet (alex\@lokku.com)",
-  "BUILD_REQUIRES" => {
-    "List::MoreUtils" => 0,
-    "Test::More" => 0,
-    "Test::Warn" => 0
-  },
+  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -32,12 +28,30 @@ my %WriteMakefileArgs = (
     "XML::Simple" => 0,
     "version" => 0
   },
-  "VERSION" => "1.021001",
+  "TEST_REQUIRES" => {
+    "List::MoreUtils" => 0,
+    "Test::More" => 0,
+    "Test::Warn" => 0
+  },
+  "VERSION" => "1.021002",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};

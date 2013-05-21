@@ -4,7 +4,7 @@
       "Alex Balhatchet (alex@lokku.com)"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -48,10 +48,10 @@
       "homepage" : "http://www.nestoria.co.uk/help/api",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/kaoru/WebService-Nestoria-Search.git",
-         "web" : "http://github.com/kaoru/WebService-Nestoria-Search"
+         "url" : "git://github.com/lokku/WebService-Nestoria-Search.git",
+         "web" : "http://github.com/lokku/WebService-Nestoria-Search"
       }
    },
-   "version" : "1.021001"
+   "version" : "1.021002"
 }
 
